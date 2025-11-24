@@ -3,7 +3,7 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>کاتالوگ دستگاه بسته‌بندی - نسخه فوق حرفه‌ای</title>
+  <title>کاتالوگ دستگاه بسته‌بندی</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@ body {
   box-sizing: border-box;
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   direction: rtl;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
@@ -31,16 +32,15 @@ html, body {
 }
 
 /* ========================================
-   🎨 پس‌زمینه فوق پیشرفته با Star Field
+   🎨 پس‌زمینه بهینه شده
    ======================================== */
 body {
   background: #0a0e1a;
   color: #f1f5f9;
   position: relative;
-  perspective: 1000px;
 }
 
-/* Star Field Background */
+/* Star Field - فقط دسکتاپ */
 .stars-container {
   position: fixed;
   top: 0;
@@ -52,12 +52,19 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .stars-container {
+    display: none;
+  }
+}
+
 .star {
   position: absolute;
   background: white;
   border-radius: 50%;
   animation: twinkle 3s ease-in-out infinite;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  will-change: opacity;
 }
 
 @keyframes twinkle {
@@ -71,7 +78,7 @@ body {
   }
 }
 
-/* Animated Background Gradients */
+/* Animated Background Gradients - کاهش یافته */
 .animated-bg {
   position: fixed;
   top: 0;
@@ -86,32 +93,40 @@ body {
 .gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(80px);
   animation: floatOrb 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .gradient-orb {
+    filter: blur(60px);
+    animation-duration: 30s;
+  }
 }
 
 .orb-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.4), transparent);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent);
   top: 10%;
   left: 10%;
   animation-delay: 0s;
 }
 
 .orb-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent);
   top: 60%;
   right: 20%;
   animation-delay: 5s;
 }
 
 .orb-3 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(96, 165, 250, 0.25), transparent);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent);
   bottom: 10%;
   left: 30%;
   animation-delay: 10s;
@@ -122,17 +137,17 @@ body {
     transform: translate(0, 0) scale(1);
   }
   25% {
-    transform: translate(100px, -100px) scale(1.1);
+    transform: translate(50px, -50px) scale(1.05);
   }
   50% {
-    transform: translate(-50px, 100px) scale(0.9);
+    transform: translate(-30px, 50px) scale(0.95);
   }
   75% {
-    transform: translate(-100px, -50px) scale(1.05);
+    transform: translate(-50px, -30px) scale(1.02);
   }
 }
 
-/* Grid Pattern */
+/* Grid Pattern - بهینه شده */
 .grid-pattern {
   position: fixed;
   top: 0;
@@ -146,6 +161,14 @@ body {
   pointer-events: none;
   z-index: 1;
   animation: gridScroll 30s linear infinite;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .grid-pattern {
+    animation: none;
+    opacity: 0.5;
+  }
 }
 
 @keyframes gridScroll {
@@ -166,7 +189,7 @@ body {
   background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
 }
 
-/* Scan Line Effect */
+/* Scan Line - فقط دسکتاپ */
 .scan-line {
   position: fixed;
   top: 0;
@@ -178,6 +201,12 @@ body {
   z-index: 3;
   animation: scan 4s linear infinite;
   box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+}
+
+@media (max-width: 768px) {
+  .scan-line {
+    display: none;
+  }
 }
 
 @keyframes scan {
@@ -198,31 +227,39 @@ body {
 }
 
 /* ========================================
-   🎯 Magnetic Cursor فوق پیشرفته
+   🎯 Cursor - فقط دسکتاپ
    ======================================== */
-.cursor-dot {
-  width: 10px;
-  height: 10px;
-  background: #3b82f6;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 10000;
-  transition: transform 0.05s ease;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 1);
-  mix-blend-mode: screen;
+.cursor-dot, .cursor-ring {
+  display: none;
 }
 
-.cursor-ring {
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(37, 99, 235, 0.5);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: all 0.2s ease;
-  box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+@media (min-width: 1024px) {
+  .cursor-dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #3b82f6;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.05s ease;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 1);
+    mix-blend-mode: screen;
+  }
+
+  .cursor-ring {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(37, 99, 235, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+  }
 }
 
 .cursor-trail {
@@ -237,7 +274,7 @@ body {
 }
 
 /* ========================================
-   📄 تنظیمات صفحه و انتقال‌ها
+   📄 تنظیمات صفحه
    ======================================== */
 .page {
   display: none;
@@ -252,28 +289,27 @@ body {
   z-index: 5;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .page.active {
   display: flex;
-  animation: pageEnter 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: pageEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes pageEnter {
   0% { 
     opacity: 0; 
-    transform: translateY(60px) scale(0.95) rotateX(10deg);
-    filter: blur(20px);
+    transform: translateY(30px);
   }
   100% { 
     opacity: 1; 
-    transform: translateY(0) scale(1) rotateX(0);
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
 /* ========================================
-   📱 هدر فوق حرفه‌ای با Glassmorphism
+   📱 هدر بهینه شده
    ======================================== */
 .header {
   position: fixed;
@@ -281,146 +317,113 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  background: rgba(10, 14, 26, 0.7);
-  backdrop-filter: blur(30px) saturate(180%);
+  background: rgba(10, 14, 26, 0.85);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-  box-shadow: 
-    0 8px 40px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(59, 130, 246, 0.1) inset,
-    0 20px 60px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  padding: 20px 60px;
+  padding: 15px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 15px;
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .header.scrolled {
-  padding: 15px 60px;
-  background: rgba(10, 14, 26, 0.9);
-  box-shadow: 
-    0 12px 50px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(59, 130, 246, 0.2) inset,
-    0 30px 80px rgba(37, 99, 235, 0.3);
+  padding: 12px 30px;
+  background: rgba(10, 14, 26, 0.95);
 }
 
-.header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(37, 99, 235, 0.1) 0%,
-    transparent 50%,
-    rgba(59, 130, 246, 0.1) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
+@media (max-width: 768px) {
+  .header.scrolled {
+    padding: 10px 15px;
+  }
 }
 
-.header:hover::before {
-  opacity: 1;
-}
-
-.header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(37, 99, 235, 0.8), 
-    rgba(59, 130, 246, 0.8),
-    rgba(96, 165, 250, 0.8),
-    transparent);
-  animation: shimmerLine 4s linear infinite;
-}
-
-@keyframes shimmerLine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-/* لوگو با Rainbow Effect */
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 20px;
-  position: relative;
-  transform-style: preserve-3d;
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .logo-section {
+    gap: 10px;
+  }
 }
 
 .logo-wrapper {
   position: relative;
-  transform-style: preserve-3d;
 }
 
 .logo {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 50px;
+  font-size: 35px;
   line-height: 1;
   position: relative;
-  filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.8));
-  animation: logoFloat 4s ease-in-out infinite, logoRotate 20s linear infinite;
+  filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.6));
+  animation: logoFloat 3s ease-in-out infinite;
   transition: transform 0.3s ease;
 }
 
+@media (max-width: 768px) {
+  .logo {
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+  }
+}
+
 .logo:hover {
-  transform: scale(1.15) rotateY(180deg);
+  transform: scale(1.1);
 }
 
 .logo img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 15px;
-  box-shadow: 0 0 40px rgba(37, 99, 235, 0.6);
+  border-radius: 10px;
 }
 
 @keyframes logoFloat {
   0%, 100% { 
-    transform: translateY(0) rotateZ(0deg);
-  }
-  25% {
-    transform: translateY(-10px) rotateZ(5deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(0) rotateZ(0deg);
+    transform: translateY(-5px);
   }
-  75% {
-    transform: translateY(-10px) rotateZ(-5deg);
-  }
-}
-
-@keyframes logoRotate {
-  0% { filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.8)) hue-rotate(0deg); }
-  100% { filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.8)) hue-rotate(360deg); }
 }
 
 .logo-glow {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.4), transparent);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent);
   border-radius: 50%;
-  animation: glowPulse 3s ease-in-out infinite;
+  animation: glowPulse 2s ease-in-out infinite;
   pointer-events: none;
   z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .logo-glow {
+    display: none;
+  }
 }
 
 @keyframes glowPulse {
@@ -429,23 +432,39 @@ body {
     opacity: 0.5;
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.3);
-    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.7;
   }
 }
 
 .company-name {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 900;
-  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb, #60a5fa);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.5px;
-  animation: gradientFlow 6s ease infinite, textGlow 3s ease-in-out infinite;
-  position: relative;
-  text-shadow: 0 0 40px rgba(37, 99, 235, 0.6);
+  letter-spacing: -0.3px;
+  animation: gradientFlow 4s ease infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+@media (max-width: 768px) {
+  .company-name {
+    font-size: 16px;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .company-name {
+    font-size: 14px;
+    max-width: 150px;
+  }
 }
 
 @keyframes gradientFlow {
@@ -453,214 +472,126 @@ body {
   50% { background-position: 100% 50%; }
 }
 
-@keyframes textGlow {
-  0%, 100% { 
-    filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.5));
-  }
-  50% { 
-    filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.9));
-  }
-}
-
-.company-name::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: blur(10px);
-  opacity: 0.7;
-}
-
-/* منوی ناوبری با افکت‌های پیشرفته */
 .nav-menu {
   display: flex;
-  gap: 15px;
-  position: relative;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    gap: 8px;
+    width: 100%;
+  }
 }
 
 .nav-btn {
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(59, 130, 246, 0.3);
-  padding: 14px 32px;
-  border-radius: 50px;
+  padding: 10px 20px;
+  border-radius: 25px;
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 17px;
+  transition: all 0.3s ease;
+  font-size: 14px;
   font-weight: 700;
   color: #94a3b8;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(15px);
-  transform-style: preserve-3d;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
 }
 
-.nav-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.5), transparent);
-  transform: translate(-50%, -50%);
-  transition: all 0.6s ease;
+@media (max-width: 768px) {
+  .nav-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+    flex: 1;
+    min-width: 80px;
+  }
 }
 
-.nav-btn:hover::before {
-  width: 400px;
-  height: 400px;
+@media (max-width: 480px) {
+  .nav-btn {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
 }
 
-.nav-btn::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 70%
-  );
-  transform: rotate(45deg);
-  transition: all 0.5s ease;
-}
-
-.nav-btn:hover::after {
-  animation: shine 1.5s ease infinite;
-}
-
-@keyframes shine {
-  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+.nav-btn:active {
+  transform: scale(0.95);
 }
 
 .nav-btn:hover {
   color: #60a5fa;
   border-color: rgba(59, 130, 246, 0.7);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 
-    0 15px 40px rgba(37, 99, 235, 0.4),
-    0 0 60px rgba(37, 99, 235, 0.3) inset;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
 }
 
 .nav-btn.active-btn {
-  background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
   color: white;
   border-color: transparent;
-  box-shadow: 
-    0 0 40px rgba(37, 99, 235, 0.8),
-    0 8px 30px rgba(37, 99, 235, 0.6),
-    0 0 80px rgba(37, 99, 235, 0.4) inset;
-  transform: scale(1.08);
-  animation: activeGlow 3s ease infinite;
-}
-
-@keyframes activeGlow {
-  0%, 100% { 
-    box-shadow: 
-      0 0 40px rgba(37, 99, 235, 0.8),
-      0 8px 30px rgba(37, 99, 235, 0.6);
-  }
-  50% { 
-    box-shadow: 
-      0 0 60px rgba(37, 99, 235, 1),
-      0 8px 40px rgba(37, 99, 235, 0.8);
-  }
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+  transform: scale(1.05);
 }
 
 /* ========================================
-   🏠 صفحه خانه با Parallax Effect
+   🏠 صفحه خانه
    ======================================== */
 #home {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
-  gap: 40px;
+  gap: 30px;
   position: relative;
 }
 
-/* ویدیو با Cinema Mode */
+@media (max-width: 768px) {
+  #home {
+    padding: 180px 20px 40px 20px;
+    gap: 20px;
+  }
+}
+
 .hero-video-container {
   width: 100%;
-  max-width: 1200px;
-  height: 400px;
+  max-width: 1000px;
+  height: 350px;
   background: linear-gradient(135deg, #1e3a8a, #1e40af, #2563eb, #3b82f6);
-  background-size: 400% 400%;
-  animation: gradientFlow 10s ease infinite;
-  border-radius: 40px;
+  background-size: 300% 300%;
+  animation: gradientFlow 8s ease infinite;
+  border-radius: 30px;
   overflow: hidden;
-  box-shadow: 
-    0 40px 100px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(59, 130, 246, 0.4) inset,
-    0 0 120px rgba(37, 99, 235, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 3px solid rgba(59, 130, 246, 0.3);
-  transform-style: preserve-3d;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .hero-video-container {
+    height: 250px;
+    border-radius: 20px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-video-container {
+    height: 200px;
+  }
 }
 
 .hero-video-container:hover {
-  transform: scale(1.03) rotateX(3deg) translateZ(50px);
-  box-shadow: 
-    0 50px 120px rgba(0, 0, 0, 0.8),
-    0 0 0 2px rgba(59, 130, 246, 0.6) inset,
-    0 0 150px rgba(37, 99, 235, 0.7);
-}
-
-.hero-video-container::before {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 300%;
-  height: 300%;
-  background: linear-gradient(
-    45deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.15) 50%,
-    transparent 60%
-  );
-  animation: megaShimmer 5s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes megaShimmer {
-  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-}
-
-.hero-video-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.hero-video-container:hover::after {
-  opacity: 1;
+  transform: scale(1.02);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
 }
 
 .hero-video-container video {
@@ -670,37 +601,54 @@ body {
 }
 
 .hero-video-placeholder {
-  font-size: 140px;
+  font-size: 100px;
   color: rgba(255, 255, 255, 0.95);
-  filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.5));
-  animation: logoFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+  animation: logoFloat 3s ease-in-out infinite;
 }
 
-/* Cinema Mode Controls */
+@media (max-width: 768px) {
+  .hero-video-placeholder {
+    font-size: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-video-placeholder {
+    font-size: 50px;
+  }
+}
+
 .cinema-controls {
   position: absolute;
-  bottom: 20px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: 15px;
+  display: none;
+  gap: 10px;
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 10;
 }
 
-.hero-video-container:hover .cinema-controls {
-  opacity: 1;
+@media (min-width: 769px) {
+  .cinema-controls {
+    display: flex;
+  }
+  
+  .hero-video-container:hover .cinema-controls {
+    opacity: 1;
+  }
 }
 
 .cinema-btn {
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.3);
-  padding: 10px 20px;
-  border-radius: 25px;
+  padding: 8px 16px;
+  border-radius: 20px;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -710,37 +658,39 @@ body {
   background: rgba(37, 99, 235, 0.8);
   border-color: rgba(37, 99, 235, 1);
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
 }
 
-/* توضیحات با Morphing Effect */
 .hero-description {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(30px) saturate(180%);
-  padding: 40px;
-  border-radius: 40px;
-  box-shadow: 
-    0 30px 90px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(59, 130, 246, 0.3) inset;
-  font-size: 20px;
-  line-height: 2;
+  backdrop-filter: blur(20px);
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  font-size: 18px;
+  line-height: 1.9;
   color: #cbd5e1;
   text-align: center;
   border: 2px solid rgba(59, 130, 246, 0.2);
   position: relative;
   overflow: hidden;
-  transform-style: preserve-3d;
-  transition: all 0.5s ease;
 }
 
-.hero-description:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 
-    0 40px 110px rgba(0, 0, 0, 0.6),
-    0 0 0 2px rgba(59, 130, 246, 0.5) inset,
-    0 0 100px rgba(37, 99, 235, 0.4);
+@media (max-width: 768px) {
+  .hero-description {
+    padding: 20px;
+    font-size: 15px;
+    border-radius: 20px;
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-description {
+    padding: 15px;
+    font-size: 13px;
+  }
 }
 
 .hero-description::before {
@@ -748,39 +698,26 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 8px;
+  width: 5px;
   height: 100%;
-  background: linear-gradient(180deg, #2563eb, #3b82f6, #60a5fa, #2563eb);
-  background-size: 100% 200%;
-  box-shadow: 0 0 30px rgba(37, 99, 235, 0.8);
-  animation: gradientFlow 4s linear infinite;
-}
-
-.hero-description::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-  animation: rotateGradient 10s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes rotateGradient {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  background: linear-gradient(180deg, #2563eb, #3b82f6, #60a5fa);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
 }
 
 /* ========================================
-   🏭 صفحه محصولات با Advanced Grid
+   🏭 صفحه محصولات
    ======================================== */
 #products {
-  max-width: 1800px;
+  max-width: 1600px;
   margin: 0 auto;
   flex-direction: column;
   overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  #products {
+    padding: 180px 20px 40px 20px;
+  }
 }
 
 .product-detail-page {
@@ -789,540 +726,13 @@ body {
   padding: 140px 40px 60px 40px;
 }
 
-/* عنوان با 3D Transform */
+@media (max-width: 768px) {
+  .product-detail-page {
+    padding: 180px 20px 40px 20px;
+  }
+}
+
 .page-title {
-  font-size: 48px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb, #60a5fa);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-align: center;
-  margin-bottom: 30px;
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  animation: gradientFlow 6s ease infinite;
-  filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.6));
-  letter-spacing: -2px;
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-}
-
-.page-title:hover {
-  transform: scale(1.05) rotateX(5deg);
-}
-
-.page-title::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: blur(20px);
-  opacity: 0.5;
-}
-
-.page-title::after {
-  content: '';
-  position: absolute;
-  bottom: -30px;
-  right: 50%;
-  transform: translateX(50%);
-  width: 200px;
-  height: 8px;
-  background: linear-gradient(90deg, transparent, #2563eb, #3b82f6, #60a5fa, transparent);
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(37, 99, 235, 0.9);
-  animation: titleLinePulse 3s ease infinite;
-}
-
-@keyframes titleLinePulse {
-  0%, 100% { 
-    opacity: 1; 
-    transform: translateX(50%) scaleX(1);
-    box-shadow: 0 0 30px rgba(37, 99, 235, 0.9);
-  }
-  50% { 
-    opacity: 0.6; 
-    transform: translateX(50%) scaleX(1.3);
-    box-shadow: 0 0 50px rgba(37, 99, 235, 1);
-  }
-}
-
-/* Container با Custom Scrollbar */
-.products-container {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 20px;
-  scrollbar-width: thin;
-  scrollbar-color: #2563eb rgba(30, 41, 59, 0.5);
-  border-radius: 25px;
-  position: relative;
-  min-height: 0;
-}
-
-.products-container::-webkit-scrollbar {
-  width: 14px;
-}
-
-.products-container::-webkit-scrollbar-track {
-  background: rgba(30, 41, 59, 0.4);
-  border-radius: 10px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
-}
-
-.products-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #2563eb, #3b82f6, #60a5fa);
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.7);
-  border: 2px solid rgba(10, 14, 26, 0.5);
-}
-
-.products-container::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #3b82f6, #60a5fa, #93c5fd);
-  box-shadow: 0 0 25px rgba(37, 99, 235, 1);
-}
-
-/* Grid با Masonry Effect */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
-  padding: 10px;
-}
-
-/* کارت‌های محصول فوق حرفه‌ای */
-.product-card {
-  background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-radius: 35px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(59, 130, 246, 0.2) inset;
-  border: 2px solid rgba(59, 130, 246, 0.15);
-  position: relative;
-  transform-style: preserve-3d;
-  animation: cardFloatIn 6s ease-in-out infinite;
-  animation-delay: calc(var(--card-index) * 0.1s);
-}
-
-@keyframes cardFloatIn {
-  0%, 100% { 
-    transform: translateY(0) rotateY(0deg);
-  }
-  50% { 
-    transform: translateY(-15px) rotateY(2deg);
-  }
-}
-
-.product-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(37, 99, 235, 0.15) 0%,
-    transparent 50%,
-    rgba(59, 130, 246, 0.15) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.product-card:hover::before {
-  opacity: 1;
-}
-
-.product-card::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 300%;
-  height: 300%;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.2) 0%, transparent 40%),
-    radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 40%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-  z-index: 0;
-  animation: orbitGradient 8s linear infinite;
-}
-
-.product-card:hover::after {
-  opacity: 1;
-}
-
-@keyframes orbitGradient {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.product-card:hover {
-  transform: translateY(-25px) scale(1.05) rotateX(8deg) rotateY(5deg);
-  box-shadow: 
-    0 45px 100px rgba(0, 0, 0, 0.6),
-    0 0 0 2px rgba(59, 130, 246, 0.6) inset,
-    0 0 80px rgba(37, 99, 235, 0.6);
-  border-color: rgba(59, 130, 246, 0.8);
-}
-
-/* Badge جدید */
-.product-badge {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  z-index: 10;
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
-  animation: badgePulse 2s ease-in-out infinite;
-}
-
-@keyframes badgePulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-/* تصویر محصول */
-.product-image-wrapper {
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(135deg, #1e3a8a, #1e40af, #2563eb);
-  background-size: 200% 200%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.6s ease;
-}
-
-.product-card:hover .product-image-wrapper {
-  background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
-  animation: gradientFlow 3s ease infinite;
-}
-
-.product-image-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: 
-    linear-gradient(
-      60deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.2) 50%,
-      transparent 70%
-    );
-  transform: rotate(60deg);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.product-card:hover .product-image-wrapper::before {
-  opacity: 1;
-  animation: diagonalShine 3s linear infinite;
-}
-
-@keyframes diagonalShine {
-  0% { transform: translateX(-100%) translateY(-100%) rotate(60deg); }
-  100% { transform: translateX(100%) translateY(100%) rotate(60deg); }
-}
-
-.product-image-wrapper::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: linear-gradient(to top, rgba(10, 14, 26, 0.8), transparent);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.product-card:hover .product-image-wrapper::after {
-  opacity: 1;
-}
-
-.product-image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.product-card:hover .product-image-wrapper img {
-  transform: scale(1.15) rotate(2deg);
-}
-
-.product-icon {
-  font-size: 70px;
-  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
-  transition: all 0.6s ease;
-  animation: iconFloat 3s ease-in-out infinite;
-}
-
-@keyframes iconFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(10deg); }
-}
-
-.product-card:hover .product-icon {
-  transform: scale(1.25) rotate(15deg);
-  filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.8));
-}
-
-/* اطلاعات محصول */
-.product-info {
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  background: linear-gradient(to bottom, transparent, rgba(10, 14, 26, 0.3));
-}
-
-.product-name {
-  font-size: 18px;
-  font-weight: 900;
-  color: #e2e8f0;
-  line-height: 1.4;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s ease;
-  position: relative;
-  display: inline-block;
-}
-
-.product-name::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
-  border-radius: 2px;
-  transition: width 0.4s ease;
-}
-
-.product-card:hover .product-name {
-  color: #60a5fa;
-  transform: scale(1.05);
-}
-
-.product-card:hover .product-name::after {
-  width: 100%;
-}
-
-/* Product Quick Info */
-.product-quick-info {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
-}
-
-.product-card:hover .product-quick-info {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.quick-info-badge {
-  background: rgba(37, 99, 235, 0.2);
-  backdrop-filter: blur(10px);
-  padding: 6px 12px;
-  border-radius: 15px;
-  font-size: 12px;
-  color: #60a5fa;
-  font-weight: 600;
-  border: 1px solid rgba(37, 99, 235, 0.3);
-}
-
-/* ========================================
-   📋 صفحه جزئیات محصول
-   ======================================== */
-.product-detail-page {
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-/* دکمه بازگشت */
-.back-btn {
-  background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(20px);
-  color: #60a5fa;
-  border: 2px solid rgba(59, 130, 246, 0.4);
-  padding: 16px 40px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 800;
-  margin-bottom: 50px;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.back-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.5), transparent);
-  transform: translate(-50%, -50%);
-  transition: all 0.6s ease;
-  border-radius: 50%;
-}
-
-.back-btn:hover::before {
-  width: 500px;
-  height: 500px;
-}
-
-.back-btn:hover {
-  background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
-  color: white;
-  transform: translateX(15px) scale(1.08);
-  box-shadow: 
-    0 20px 50px rgba(37, 99, 235, 0.6),
-    0 0 60px rgba(37, 99, 235, 0.4) inset;
-  border-color: transparent;
-}
-
-.product-detail-title {
-  font-size: 56px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb, #60a5fa);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 60px;
-  text-align: center;
-  animation: gradientFlow 6s ease infinite;
-  filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.5));
-  letter-spacing: -1px;
-}
-
-.product-detail-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  margin-bottom: 60px;
-}
-
-.product-media-box {
-  background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(20px);
-  border-radius: 35px;
-  overflow: hidden;
-  box-shadow: 
-    0 30px 80px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(59, 130, 246, 0.3) inset;
-  height: 550px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border: 2px solid rgba(59, 130, 246, 0.3);
-  transition: all 0.6s ease;
-  transform-style: preserve-3d;
-}
-
-.product-media-box:hover {
-  transform: scale(1.03) rotateY(5deg);
-  box-shadow: 
-    0 40px 100px rgba(0, 0, 0, 0.6),
-    0 0 0 2px rgba(59, 130, 246, 0.5) inset,
-    0 0 80px rgba(37, 99, 235, 0.5);
-}
-
-.product-media-box img,
-.product-media-box video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.product-media-box:hover img,
-.product-media-box:hover video {
-  transform: scale(1.1);
-}
-
-.product-media-placeholder {
-  font-size: 160px;
-  color: #60a5fa;
-  filter: drop-shadow(0 0 50px rgba(37, 99, 235, 0.7));
-  animation: logoFloat 4s ease-in-out infinite;
-}
-
-.product-detail-info {
-  background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(20px);
-  padding: 60px;
-  border-radius: 35px;
-  box-shadow: 
-    0 30px 80px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(59, 130, 246, 0.3) inset;
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-  border: 2px solid rgba(59, 130, 246, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.product-detail-info::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.product-detail-info h3 {
   font-size: 40px;
   font-weight: 900;
   background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
@@ -1330,49 +740,631 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  border-bottom: 3px solid rgba(59, 130, 246, 0.4);
-  padding-bottom: 25px;
+  text-align: center;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  animation: gradientFlow 4s ease infinite;
+  filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));
+  letter-spacing: -1px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 24px;
+  }
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 150px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #2563eb, #3b82f6, transparent);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.7);
+}
+
+@media (max-width: 768px) {
+  .page-title::after {
+    width: 100px;
+    height: 3px;
+    bottom: -10px;
+  }
+}
+
+.products-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: #2563eb rgba(30, 41, 59, 0.5);
+  border-radius: 20px;
+  position: relative;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  .products-container {
+    padding: 10px;
+  }
+}
+
+.products-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+@media (max-width: 768px) {
+  .products-container::-webkit-scrollbar {
+    width: 6px;
+  }
+}
+
+.products-container::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.3);
+  border-radius: 8px;
+}
+
+.products-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2563eb, #3b82f6);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 10px;
+}
+
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+.product-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(59, 130, 246, 0.15);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    border-radius: 18px;
+    border-width: 1px;
+  }
+}
+
+.product-card:active {
+  transform: scale(0.97);
+}
+
+.product-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+@media (max-width: 768px) {
+  .product-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+}
+
+.product-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 10px;
+  font-weight: 700;
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+}
+
+@media (max-width: 768px) {
+  .product-badge {
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+    font-size: 9px;
+  }
+}
+
+.product-image-wrapper {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, #1e3a8a, #1e40af, #2563eb);
+  background-size: 200% 200%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .product-image-wrapper {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-image-wrapper {
+    height: 120px;
+  }
+}
+
+.product-card:hover .product-image-wrapper {
+  background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image-wrapper img {
+  transform: scale(1.1);
+}
+
+.product-icon {
+  font-size: 60px;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .product-icon {
+    font-size: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-icon {
+    font-size: 35px;
+  }
+}
+
+.product-card:hover .product-icon {
+  transform: scale(1.15);
+}
+
+.product-info {
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .product-info {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-info {
+    padding: 10px;
+  }
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: 900;
+  color: #e2e8f0;
+  line-height: 1.3;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .product-name {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-name {
+    font-size: 11px;
+  }
+}
+
+.product-card:hover .product-name {
+  color: #60a5fa;
+  transform: scale(1.03);
+}
+
+.product-quick-info {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s ease;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .product-quick-info {
+    gap: 5px;
+    margin-top: 8px;
+  }
+}
+
+.product-card:hover .product-quick-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .product-quick-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quick-info-badge {
+  background: rgba(37, 99, 235, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  color: #60a5fa;
+  font-weight: 600;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+@media (max-width: 768px) {
+  .quick-info-badge {
+    padding: 3px 8px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-info-badge {
+    font-size: 8px;
+    padding: 2px 6px;
+  }
+}
+
+/* ========================================
+   📋 صفحه جزئیات محصول
+   ======================================== */
+.product-detail-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(15px);
+  color: #60a5fa;
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .back-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}
+
+.back-btn:active {
+  transform: scale(0.95);
+}
+
+.back-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  transform: translateX(10px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(37, 99, 235, 0.5);
+  border-color: transparent;
+}
+
+.product-detail-title {
+  font-size: 44px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+  text-align: center;
+  animation: gradientFlow 4s ease infinite;
+  filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));
+  letter-spacing: -0.5px;
+}
+
+@media (max-width: 768px) {
+  .product-detail-title {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail-title {
+    font-size: 22px;
+  }
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-detail-grid {
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+}
+
+.product-media-box {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .product-media-box {
+    height: 300px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-media-box {
+    height: 250px;
+  }
+}
+
+.product-media-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.product-media-box img,
+.product-media-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-media-box:hover img,
+.product-media-box:hover video {
+  transform: scale(1.05);
+}
+
+.product-media-placeholder {
+  font-size: 120px;
+  color: #60a5fa;
+  filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.6));
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .product-media-placeholder {
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-media-placeholder {
+    font-size: 60px;
+  }
+}
+
+.product-detail-info {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .product-detail-info {
+    padding: 25px;
+    gap: 20px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail-info {
+    padding: 20px;
+  }
+}
+
+.product-detail-info h3 {
+  font-size: 32px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 2px solid rgba(59, 130, 246, 0.4);
+  padding-bottom: 15px;
   animation: gradientFlow 4s ease infinite;
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .product-detail-info h3 {
+    font-size: 22px;
+    padding-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail-info h3 {
+    font-size: 18px;
+  }
+}
+
 .product-detail-info p {
-  font-size: 20px;
-  line-height: 2.3;
+  font-size: 17px;
+  line-height: 2;
   color: #cbd5e1;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .product-detail-info p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail-info p {
+    font-size: 12px;
+  }
 }
 
 .product-specs {
   background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
   border: 2px solid rgba(59, 130, 246, 0.3);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) inset;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) inset;
   position: relative;
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .product-specs {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-specs {
+    padding: 15px;
+  }
+}
+
 .product-specs h4 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
   color: #60a5fa;
-  margin-bottom: 30px;
-  text-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+  margin-bottom: 20px;
   position: relative;
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .product-specs h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-specs h4 {
+    font-size: 16px;
+  }
 }
 
 .product-specs h4::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -8px;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg, #2563eb, #3b82f6, transparent);
   border-radius: 2px;
 }
@@ -1381,32 +1373,29 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 15px 0;
   border-bottom: 2px solid rgba(59, 130, 246, 0.2);
-  font-size: 18px;
-  transition: all 0.4s ease;
+  font-size: 15px;
+  transition: all 0.3s ease;
   position: relative;
 }
 
-.spec-item::before {
-  content: '';
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 50%;
-  background: linear-gradient(to right, #2563eb, transparent);
-  border-radius: 0 5px 5px 0;
-  transition: width 0.4s ease;
+@media (max-width: 768px) {
+  .spec-item {
+    padding: 12px 0;
+    font-size: 13px;
+  }
 }
 
-.spec-item:hover::before {
-  width: 5px;
+@media (max-width: 480px) {
+  .spec-item {
+    font-size: 11px;
+    padding: 10px 0;
+  }
 }
 
 .spec-item:hover {
-  padding-right: 15px;
+  padding-right: 10px;
   border-bottom-color: rgba(59, 130, 246, 0.5);
   background: rgba(37, 99, 235, 0.05);
 }
@@ -1418,71 +1407,126 @@ body {
 .spec-label {
   font-weight: 800;
   color: #60a5fa;
-  text-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .spec-label::before {
   content: '▸';
   color: #3b82f6;
-  font-size: 20px;
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  .spec-label::before {
+    font-size: 12px;
+  }
 }
 
 .spec-value {
   color: #94a3b8;
   font-weight: 700;
   background: rgba(148, 163, 184, 0.1);
-  padding: 6px 14px;
-  border-radius: 15px;
+  padding: 5px 12px;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .spec-value {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spec-value {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
 }
 
 .product-video-section {
   width: 100%;
   background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(20px);
-  border-radius: 35px;
-  padding: 50px;
-  box-shadow: 
-    0 30px 80px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(59, 130, 246, 0.3) inset;
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 35px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   border: 2px solid rgba(59, 130, 246, 0.3);
 }
 
+@media (max-width: 768px) {
+  .product-video-section {
+    padding: 20px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-video-section {
+    padding: 15px;
+  }
+}
+
 .product-video-section h4 {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 800;
   background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 35px;
+  margin-bottom: 25px;
   text-align: center;
   animation: gradientFlow 4s ease infinite;
 }
 
+@media (max-width: 768px) {
+  .product-video-section h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-video-section h4 {
+    font-size: 16px;
+  }
+}
+
 .product-video-wrapper {
   width: 100%;
-  height: 600px;
+  height: 500px;
   background: linear-gradient(135deg, #1e3a8a, #1e40af, #2563eb);
   background-size: 200% 200%;
-  animation: gradientFlow 8s ease infinite;
-  border-radius: 30px;
+  animation: gradientFlow 6s ease infinite;
+  border-radius: 20px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
   border: 2px solid rgba(59, 130, 246, 0.3);
-  transition: all 0.6s ease;
+  transition: all 0.3s ease;
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .product-video-wrapper {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-video-wrapper {
+    height: 200px;
+  }
+}
+
 .product-video-wrapper:hover {
-  transform: scale(1.02);
-  box-shadow: 0 30px 90px rgba(37, 99, 235, 0.6);
+  transform: scale(1.01);
+  box-shadow: 0 20px 50px rgba(37, 99, 235, 0.5);
 }
 
 .product-video-wrapper video {
@@ -1492,23 +1536,42 @@ body {
 }
 
 .video-placeholder {
-  font-size: 140px;
+  font-size: 100px;
   color: #60a5fa;
-  filter: drop-shadow(0 0 50px rgba(37, 99, 235, 0.7));
-  animation: logoFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.6));
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .video-placeholder {
+    font-size: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-placeholder {
+    font-size: 50px;
+  }
 }
 
 /* ========================================
    ℹ️ صفحه درباره ما
    ======================================== */
 #about {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  #about {
+    padding: 180px 20px 40px 20px;
+  }
 }
 
 #about::-webkit-scrollbar {
@@ -1517,21 +1580,31 @@ body {
 
 .about-content {
   background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(30px) saturate(180%);
-  padding: 60px;
-  border-radius: 40px;
-  box-shadow: 
-    0 40px 100px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(59, 130, 246, 0.4) inset;
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
   border: 2px solid rgba(59, 130, 246, 0.3);
   position: relative;
   overflow: visible;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    padding: 25px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-content {
+    padding: 20px;
+  }
 }
 
 .about-content:hover {
-  transform: translateY(-10px) scale(1.02);
+  transform: translateY(-5px) scale(1.01);
 }
 
 .about-content::before {
@@ -1539,282 +1612,116 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 10px;
+  width: 6px;
   height: 100%;
   background: linear-gradient(180deg, #2563eb, #3b82f6, #60a5fa, #2563eb);
   background-size: 100% 200%;
-  box-shadow: 0 0 40px rgba(37, 99, 235, 0.9);
-  animation: gradientFlow 5s linear infinite;
-}
-
-.about-content::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-  animation: rotateGradient 15s linear infinite;
-  pointer-events: none;
-}
-
-.about-icon {
-  font-size: 80px;
-  margin-bottom: 30px;
-  filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.6));
-  animation: logoFloat 4s ease-in-out infinite;
-  position: relative;
-  z-index: 1;
-}
-
-.about-text {
-  font-size: 20px;
-  line-height: 2.2;
-  color: #cbd5e1;
-  text-align: right;
-  white-space: pre-line;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-  position: relative;
-  z-index: 1;
-}
-
-/* ========================================
-   📱 ریسپانسیو
-   ======================================== */
-@media (max-width: 1024px) {
-  .header {
-    padding: 18px 40px;
-  }
-  
-  .page-title {
-    font-size: 48px;
-  }
-  
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 35px;
-  }
-  
-  .product-detail-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.7);
+  animation: gradientFlow 4s linear infinite;
 }
 
 @media (max-width: 768px) {
-  .header {
-    padding: 15px 25px;
-    flex-direction: column;
-    gap: 20px;
+  .about-content::before {
+    width: 4px;
   }
-  
-  .logo-section {
-    flex-direction: column;
-    gap: 12px;
+}
+
+.about-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.5));
+  animation: logoFloat 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .about-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
   }
-  
-  .logo {
-    width: 60px;
-    height: 60px;
-    font-size: 45px;
-  }
-  
-  .company-name {
-    font-size: 20px;
-  }
-  
-  .nav-menu {
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .nav-btn {
-    padding: 12px 24px;
-    font-size: 15px;
-  }
-  
-  .page {
-    padding: 220px 25px 60px 25px;
-  }
-  
-  .hero-video-container {
-    height: 400px;
-  }
-  
-  .hero-description {
-    padding: 50px 40px;
-    font-size: 19px;
-  }
-  
-  .page-title {
+}
+
+@media (max-width: 480px) {
+  .about-icon {
     font-size: 40px;
   }
-  
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 30px;
-  }
-  
-  .product-detail-info {
-    padding: 40px;
-  }
-  
-  .product-video-wrapper {
-    height: 400px;
-  }
-  
-  .about-content {
-    padding: 50px 35px;
-  }
-  
+}
+
+.about-text {
+  font-size: 17px;
+  line-height: 2;
+  color: #cbd5e1;
+  text-align: right;
+  white-space: pre-line;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
   .about-text {
-    font-size: 18px;
+    font-size: 14px;
+    line-height: 1.8;
   }
-  
-  .scroll-indicator {
-    display: none;
+}
+
+@media (max-width: 480px) {
+  .about-text {
+    font-size: 12px;
   }
 }
 
 /* ========================================
-   🎪 Animations Library
+   📱 ریسپانسیو بیشتر
    ======================================== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+@media (max-width: 360px) {
+  .company-name {
+    font-size: 12px;
+    max-width: 120px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .nav-btn {
+    font-size: 10px;
+    padding: 6px 10px;
   }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
+  
+  .page-title {
+    font-size: 20px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .hero-video-container {
+    height: 180px;
   }
 }
 
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
+/* تمیز کردن انیمیشن‌ها در موبایل برای بهبود عملکرد */
+@media (max-width: 768px) {
+  .gradient-orb,
+  .grid-pattern,
+  .scan-line,
+  .logo-glow {
+    animation: none;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  
+  * {
+    animation-duration: 0.5s !important;
   }
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
+/* بهینه‌سازی اسکرول */
+.page {
+  scroll-behavior: smooth;
+}
+
+/* حذف افکت‌های سنگین در دستگاه‌های ضعیف */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes rotateIn {
-  from {
-    opacity: 0;
-    transform: rotate(-180deg) scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(0) scale(1);
-  }
-}
-
-/* Utility Classes */
-.fade-in-up {
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-.fade-in-down {
-  animation: fadeInDown 0.8s ease forwards;
-}
-
-.fade-in-left {
-  animation: fadeInLeft 0.8s ease forwards;
-}
-
-.fade-in-right {
-  animation: fadeInRight 0.8s ease forwards;
-}
-
-.scale-in {
-  animation: scaleIn 0.8s ease forwards;
-}
-
-.rotate-in {
-  animation: rotateIn 0.8s ease forwards;
-}
-
-/* Intersection Observer Classes */
-.reveal {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-left.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(50px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-right.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-scale.active {
-  opacity: 1;
-  transform: scale(1);
 }
 </style>
   <style>@view-transition { navigation: auto; }</style>
@@ -1850,14 +1757,14 @@ body {
    </nav>
   </header><!-- Home Page -->
   <main id="home" class="page active">
-   <div class="hero-video-container reveal-scale" id="heroVideoContainer">
+   <div class="hero-video-container" id="heroVideoContainer">
     <div class="hero-video-placeholder">
      🎬
     </div>
     <div class="cinema-controls"><button class="cinema-btn">🎬 حالت سینما</button> <button class="cinema-btn">📽️ تمام صفحه</button>
     </div>
    </div>
-   <div class="hero-description reveal" id="heroDescription">
+   <div class="hero-description" id="heroDescription">
     تولید کننده و وارد کننده انواع دستگاه‌های بسته‌بندی صنعتی با بالاترین کیفیت و تکنولوژی روز دنیا
    </div>
   </main><!-- Products Page -->
@@ -1870,7 +1777,7 @@ body {
   <div id="productDetailPages"></div><!-- About Page -->
   <section id="about" class="page">
    <h1 class="page-title" id="aboutTitle" data-text="درباره ما">درباره ما</h1>
-   <div class="about-content reveal-scale">
+   <div class="about-content">
     <div class="about-icon">
      🏢
     </div>
@@ -1911,19 +1818,27 @@ const products = [
 ];
 
 let currentPage = 'home';
+let isMobile = window.innerWidth <= 768;
+
+// تشخیص دستگاه
+window.addEventListener('resize', () => {
+  isMobile = window.innerWidth <= 768;
+});
 
 // ========================================
-// ⭐ Star Field Generator
+// ⭐ Star Field Generator - فقط دسکتاپ
 // ========================================
 function createStarField() {
+  if (isMobile) return;
+  
   const container = document.getElementById('starsContainer');
-  const starCount = 150;
+  const starCount = 100; // کاهش تعداد ستاره‌ها
   
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement('div');
     star.className = 'star';
     
-    const size = Math.random() * 3 + 1;
+    const size = Math.random() * 2 + 1;
     const x = Math.random() * 100;
     const y = Math.random() * 100;
     const duration = Math.random() * 3 + 2;
@@ -1941,7 +1856,7 @@ function createStarField() {
 }
 
 // ========================================
-// 🎯 Custom Cursor System
+// 🎯 Custom Cursor - فقط دسکتاپ
 // ========================================
 let mouseX = 0;
 let mouseY = 0;
@@ -1952,75 +1867,33 @@ let cursorRingY = 0;
 
 const cursorDot = document.getElementById('cursorDot');
 const cursorRing = document.getElementById('cursorRing');
-const cursorTrails = [];
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  
-  // Create trail
-  if (Math.random() > 0.8) {
-    createCursorTrail(mouseX, mouseY);
-  }
-});
-
-function animateCursor() {
-  // Smooth cursor dot movement
-  const dotSpeed = 0.2;
-  cursorDotX += (mouseX - cursorDotX) * dotSpeed;
-  cursorDotY += (mouseY - cursorDotY) * dotSpeed;
-  
-  cursorDot.style.left = `${cursorDotX - 5}px`;
-  cursorDot.style.top = `${cursorDotY - 5}px`;
-  
-  // Smooth cursor ring movement
-  const ringSpeed = 0.15;
-  cursorRingX += (mouseX - cursorRingX) * ringSpeed;
-  cursorRingY += (mouseY - cursorRingY) * ringSpeed;
-  
-  cursorRing.style.left = `${cursorRingX - 20}px`;
-  cursorRing.style.top = `${cursorRingY - 20}px`;
-  
-  requestAnimationFrame(animateCursor);
-}
-
-function createCursorTrail(x, y) {
-  const trail = document.createElement('div');
-  trail.className = 'cursor-trail';
-  trail.style.left = `${x - 3}px`;
-  trail.style.top = `${y - 3}px`;
-  document.body.appendChild(trail);
-  
-  setTimeout(() => {
-    trail.style.opacity = '0';
-    trail.style.transform = 'scale(0)';
-  }, 50);
-  
-  setTimeout(() => {
-    trail.remove();
-  }, 500);
-}
-
-// Magnetic effect on interactive elements
-document.addEventListener('DOMContentLoaded', () => {
-  const magneticElements = document.querySelectorAll('.nav-btn, .product-card, .back-btn, .cinema-btn');
-  
-  magneticElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursorRing.style.width = '60px';
-      cursorRing.style.height = '60px';
-      cursorRing.style.borderColor = 'rgba(59, 130, 246, 0.8)';
-      cursorDot.style.transform = 'scale(1.5)';
-    });
-    
-    el.addEventListener('mouseleave', () => {
-      cursorRing.style.width = '40px';
-      cursorRing.style.height = '40px';
-      cursorRing.style.borderColor = 'rgba(37, 99, 235, 0.5)';
-      cursorDot.style.transform = 'scale(1)';
-    });
+if (window.innerWidth >= 1024) {
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
-});
+
+  function animateCursor() {
+    const dotSpeed = 0.2;
+    cursorDotX += (mouseX - cursorDotX) * dotSpeed;
+    cursorDotY += (mouseY - cursorDotY) * dotSpeed;
+    
+    cursorDot.style.left = `${cursorDotX - 5}px`;
+    cursorDot.style.top = `${cursorDotY - 5}px`;
+    
+    const ringSpeed = 0.15;
+    cursorRingX += (mouseX - cursorRingX) * ringSpeed;
+    cursorRingY += (mouseY - cursorRingY) * ringSpeed;
+    
+    cursorRing.style.left = `${cursorRingX - 20}px`;
+    cursorRing.style.top = `${cursorRingY - 20}px`;
+    
+    requestAnimationFrame(animateCursor);
+  }
+  
+  animateCursor();
+}
 
 // ========================================
 // 🎨 Header Scroll Effect
@@ -2034,30 +1907,7 @@ function handleHeaderScroll() {
     } else {
       header.classList.remove('scrolled');
     }
-  });
-}
-
-// ========================================
-// 🔍 Intersection Observer for Reveal Animations
-// ========================================
-function initIntersectionObserver() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, observerOptions);
-  
-  // Observe all reveal elements
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
-    observer.observe(el);
-  });
+  }, { passive: true });
 }
 
 // ========================================
@@ -2069,7 +1919,7 @@ function renderProducts() {
   
   products.forEach((product, index) => {
     const card = document.createElement('div');
-    card.className = 'product-card reveal-scale';
+    card.className = 'product-card';
     card.style.setProperty('--card-index', index);
     card.onclick = () => openProduct(product.id);
     
@@ -2094,11 +1944,6 @@ function renderProducts() {
     `;
     grid.appendChild(card);
   });
-  
-  // Re-observe new elements
-  setTimeout(() => {
-    initIntersectionObserver();
-  }, 100);
 }
 
 // ========================================
@@ -2127,8 +1972,8 @@ function createProductDetailPages() {
       <button class="back-btn" onclick="showPage('products')">← بازگشت به لیست</button>
       <h2 class="product-detail-title">${product.name}</h2>
       <div class="product-detail-grid">
-        <div class="product-media-box reveal-left">${productImageContent}</div>
-        <div class="product-detail-info reveal-right">
+        <div class="product-media-box">${productImageContent}</div>
+        <div class="product-detail-info">
           <h3>${product.name}</h3>
           <p>${product.desc}</p>
           <div class="product-specs">
@@ -2156,7 +2001,7 @@ function createProductDetailPages() {
           </div>
         </div>
       </div>
-      <div class="product-video-section reveal">
+      <div class="product-video-section">
         <h4>ویدیو معرفی محصول</h4>
         <div class="product-video-wrapper">${productVideoContent}</div>
       </div>
@@ -2182,14 +2027,7 @@ function showPage(pageId) {
   const targetPage = document.getElementById(pageId);
   if (targetPage) {
     targetPage.classList.add('active');
-    
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Re-observe elements
-    setTimeout(() => {
-      initIntersectionObserver();
-    }, 100);
   }
   
   if (pageId === 'home') {
@@ -2315,9 +2153,6 @@ async function onConfigChange(config) {
     .cursor-ring {
       border-color: ${primaryColor} !important;
     }
-    .scroll-progress {
-      background: linear-gradient(90deg, ${primaryColor}, ${secondaryColor}, ${secondaryColor}, ${primaryColor}) !important;
-    }
   `;
   document.head.appendChild(style);
 }
@@ -2392,69 +2227,22 @@ function init() {
   renderProducts();
   createProductDetailPages();
   onConfigChange(defaultConfig);
-  animateCursor();
-  handleHeaderScroll();
-  initIntersectionObserver();
+  handleHeaderScroll(); 
 }
 
-// Start everything
+// بهینه‌سازی با debounce
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    isMobile = window.innerWidth <= 768;
+  }, 250);
+}, { passive: true });
+
+// شروع
 init();
 
-// ========================================
-// 🎨 Additional Interactive Effects
-// ========================================
-
-// Parallax effect on mouse move
-document.addEventListener('mousemove', (e) => {
-  const moveX = (e.clientX - window.innerWidth / 2) / 50;
-  const moveY = (e.clientY - window.innerHeight / 2) / 50;
-  
-  document.querySelectorAll('.gradient-orb').forEach((orb, index) => {
-    const speed = (index + 1) * 0.3;
-    orb.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-  });
-});
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' && currentPage === 'home') {
-    showPage('products');
-  } else if (e.key === 'ArrowLeft' && currentPage === 'products') {
-    showPage('home');
-  } else if (e.key === 'ArrowRight' && currentPage === 'products') {
-    showPage('about');
-  } else if (e.key === 'ArrowLeft' && currentPage === 'about') {
-    showPage('products');
-  }
-});
-
-// Performance optimization: Debounce scroll events
-let scrollTimeout;
-window.addEventListener('scroll', () => {
-  if (scrollTimeout) {
-    window.cancelAnimationFrame(scrollTimeout);
-  }
-  
-  scrollTimeout = window.requestAnimationFrame(() => {
-    // Perform scroll-related updates here
-  });
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
-
-console.log('🚀 کاتالوگ فوق حرفه‌ای آماده است! - ' + new Date().toLocaleTimeString('fa-IR'));
+console.log('✅ کاتالوگ بهینه شده آماده است!');
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a3919cef32bdbe0',t:'MTc2Mzk4OTM0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a393f7cf3729752',t:'MTc2Mzk5MDg5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
